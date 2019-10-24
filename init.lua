@@ -19,16 +19,10 @@ local m_mod2 = m_shift_alt
 
 -- 应用列表映射
 local APPNAMES = {
-    IM = "QQ",
-    Mail = "Mail",
-    Doc = "Dash",
-    Term = "iTerm",
-    Firefox = "Firefox",
+    Mail = "Microsoft Outlook",
+    Shell = "iTerm",
     Browser = "Google Chrome",
-    Movie = "优酷",
-    TextEditor = "Sublime Text",
     WeChat = "WeChat",
-    Preview = "Preview",
     Editor = "Visual Studio Code"
 }
 
@@ -58,24 +52,10 @@ local LAYOUTS = {
 local APP_LAYOUT = {
     [1] = {
         one_monitor = {
-            [APPNAMES.Term] = {1, LAYOUTS.left},
-            [APPNAMES.Browser] = {1, LAYOUTS.right},
-            [APPNAMES.Mail] = {1, LAYOUTS.left},
-            [APPNAMES.IM] = {1, LAYOUTS.left},
-            [APPNAMES.Doc] = {1, LAYOUTS.right},
-            [APPNAMES.Firefox] = {1, LAYOUTS.right},
-            [APPNAMES.WeChat] = {1, LAYOUTS.left},
-            [APPNAMES.Preview] = {1, LAYOUTS.right},
+            [APPNAMES.Shell] = {1, LAYOUTS.left},
         },
         two_monitor = {
-            [APPNAMES.Term] = {2, LAYOUTS.fullscreen},
-            [APPNAMES.Browser] = {1, LAYOUTS.fullscreen},
-            [APPNAMES.Mail] = {1, LAYOUTS.fullscreen},
-            [APPNAMES.IM] = {1, LAYOUTS.right},
-            [APPNAMES.Doc] = {1, LAYOUTS.right},
-            [APPNAMES.Firefox] = {1, LAYOUTS.right},
-            [APPNAMES.WeChat] = {1, LAYOUTS.right},
-            [APPNAMES.Preview] = {1, LAYOUTS.fullscreen},
+            [APPNAMES.Shell] = {2, LAYOUTS.fullscreen},
         }
     }
 }
@@ -288,17 +268,11 @@ hs.hotkey.bind(m_mod2, "1", change_layout(APP_LAYOUT[1]))
 ---
 --  加载/切换到指定App
 hs.fnutils.each({
-    {key = "y", app = APPNAMES.Movie},
     {key = "c", app = APPNAMES.Browser},
-    {key = "f", app = APPNAMES.Firefox},
-    {key = "i", app = APPNAMES.Term},
+    {key = "s", app = APPNAMES.Shell},
     {key = "m", app = APPNAMES.Mail},
-    {key = "q", app = APPNAMES.IM},
-    {key = "s", app = APPNAMES.TextEditor},
-    {key = "d", app = APPNAMES.Doc},
     {key = "w", app = APPNAMES.WeChat},
-    {key = "p", app = APPNAMES.Preview},
-    {key = "v", app = APPNAMES.Editor},
+    {key = "v", app = APPNAMES.Editor}
 }, function(meta)
     hs.hotkey.bind(m_switch_app, meta.key, launch_or_focus_window(meta.app))
 end)
